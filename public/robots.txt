@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /users
+Disallow: /settings
+Disallow: /clients
+Disallow: /projects
+Disallow: /invoices
+Disallow: /proposals
+Disallow: /quotations
+Disallow: /login
+Disallow: /auth/
+Disallow: /mfa/
+Disallow: /sessions/
+Disallow: /account/
+Disallow: /forgot-password
+Disallow: /reset-password
+Allow: /
+
+Sitemap: /sitemap.xml

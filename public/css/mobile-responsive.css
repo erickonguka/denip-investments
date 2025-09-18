@@ -1,0 +1,447 @@
+/* MOBILE RESPONSIVE STYLES FOR DENIP INVESTMENTS */
+
+/* Mobile-only elements */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
+/* Project Cards Mobile Enhancements */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(243, 156, 18, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    color: white;
+    text-align: center;
+}
+
+.project-overlay .overlay-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+}
+
+.project-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--secondary), var(--dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 3rem;
+}
+
+.project-details {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: var(--spacing-md);
+    transition: var(--transition);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+
+.project-details.show {
+    left: 0;
+}
+
+.project-details .details-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.project-details h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-serif);
+}
+
+.detail-item {
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.detail-item strong {
+    color: var(--secondary);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Mobile Progress Indicator */
+.project-progress-container {
+    width: 100%;
+    height: 4px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    margin: var(--spacing-md) 0;
+    overflow: hidden;
+}
+
+.project-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #e67e22);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Enhanced Button Styles */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.project-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+}
+
+.project-actions .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+/* Service Card Enhancements */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #e67e22);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-sm);
+    font-size: 2rem;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--light-gray);
+}
+
+.project-count {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+    
+    .cta-buttons {
+        gap: 1rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    /* Navigation */
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-controls {
+        display: flex;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .hero-content {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.1rem);
+        margin-bottom: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Sections */
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .section-header h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+    
+    /* Grid Layouts */
+    .grid {
+        gap: var(--spacing-sm);
+    }
+    
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Project Cards */
+    .project-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-image {
+        height: 180px;
+    }
+    
+    .project-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+    
+    .project-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .project-actions {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .project-actions .btn {
+        width: 100%;
+    }
+    
+    /* Service Cards */
+    .service-card {
+        text-align: center;
+        padding: var(--spacing-sm);
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .service-footer {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    /* Hex Dividers */
+    .hex-divider {
+        margin: var(--spacing-md) auto;
+        padding: 1.5rem 2rem;
+        max-width: 280px;
+    }
+    
+    .hex-divider h2 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    /* Forms */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+    
+    /* Contact Section */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .contact-info {
+        justify-content: flex-start;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Modal */
+    .modal {
+        width: 95%;
+        margin: var(--spacing-sm);
+    }
+    
+    .modal-content {
+        padding: var(--spacing-sm);
+    }
+    
+    /* Animations - Reduced motion on mobile */
+    .animate-fade-up,
+    .animate-slide-left,
+    .animate-slide-right,
+    .animate-scale {
+        animation-duration: 0.4s;
+    }
+    
+    /* Disable parallax on mobile */
+    .hero-background {
+        transform: none !important;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .hex-divider {
+        max-width: 240px;
+        padding: 1rem 1.5rem;
+    }
+    
+    .hex-divider h2 {
+        font-size: 0.9rem;
+    }
+    
+    .project-image {
+        height: 160px;
+    }
+    
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Touch-specific enhancements */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+    
+    .card:hover {
+        transform: none;
+    }
+    
+    .project-overlay {
+        opacity: 0.8;
+    }
+    
+    /* Larger touch targets */
+    .btn {
+        min-height: 44px;
+    }
+    
+    .mobile-menu-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .project-img,
+    .hero-background {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+}

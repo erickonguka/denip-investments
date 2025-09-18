@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest in Your Future Button</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 50px;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            gap: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invest-button {
+            background: linear-gradient(135deg, #ff9500 0%, #ff8800 100%);
+            color: #000;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: bold;
+            padding: clamp(20px, 4vw, 40px) clamp(40px, 8vw, 80px);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 149, 0, 0.3);
+            clip-path: polygon(2rem 0%, calc(75% + 2rem) 0%, 100% 35%, 100% 100%, 0% 100%);
+            min-width: 300px;
+            max-width: 800px;
+            width: auto;
+            white-space: nowrap;
+            outline: none;
+        }
+
+        .invest-button:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: calc(40px + 2rem);
+            width: 120px;
+            height: 1rem;
+            background-color: #000;
+            z-index: 1;
+        }
+
+        .invest-button-text {
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Normal hover state */
+        .invest-button:hover:not(.loading):not(.error) {
+            background: linear-gradient(135deg, #ffaa00 0%, #ff9900 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 149, 0, 0.4);
+        }
+
+        .invest-button:active:not(.loading):not(.error) {
+            transform: translateY(0px);
+            box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3);
+        }
+
+        /* Focus state */
+        .invest-button:focus {
+            box-shadow: 0 8px 20px rgba(255, 149, 0, 0.3), 0 0 0 4px rgba(255, 149, 0, 0.4);
+            outline: none;
+        }
+
+        /* Loading state */
+        .invest-button.loading {
+            background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+            cursor: wait;
+            pointer-events: none;
+        }
+
+        .invest-button.loading:before {
+            background-color: #666;
+        }
+
+        .invest-button.loading .invest-button-text:after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            border: 3px solid #000;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Error state */
+        .invest-button.error {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: #fff;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .invest-button.error:before {
+            background-color: #800000;
+        }
+
+        /* Outline only state */
+        .invest-button.outline {
+            background: transparent;
+            border: 3px solid #ff9500;
+            color: #ff9500;
+            box-shadow: none;
+        }
+
+        .invest-button.outline:before {
+            display: none;
+        }
+
+        .invest-button.outline:hover {
+            background: rgba(255, 149, 0, 0.1);
+            border-color: #ffaa00;
+            color: #ffaa00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(255, 149, 0, 0.2);
+        }
+
+        /* Bouncing animation state */
+        .invest-button.bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Keyframe animations */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40%,
+            43% {
+                transform: translateY(-20px);
+            }
+
+            70% {
+                transform: translateY(-10px);
+            }
+
+            90% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .invest-button {
+                font-size: clamp(18px, 5vw, 32px);
+                padding: clamp(15px, 3vw, 25px) clamp(30px, 6vw, 50px);
+                min-width: 250px;
+            }
+
+            .invest-button:before {
+                left: calc(30px + 1rem);
+                width: 100px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Control buttons */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <button class="invest-button" id="mainButton">
+            <span class="invest-button-text">Invest in your future</span>
+        </button>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" onclick="setNormal()">Normal</button>
+        <button class="control-btn" onclick="setLoading()">Loading</button>
+        <button class="control-btn" onclick="setError()">Error</button>
+        <button class="control-btn" onclick="setOutline()">Outline</button>
+        <button class="control-btn" onclick="setBounce()">Bounce</button>
+        <button class="control-btn" onclick="testFocus()">Test Focus</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('mainButton');
+        let currentTimeout;
+
+        function clearStates() {
+            button.className = 'invest-button';
+            if (currentTimeout) {
+                clearTimeout(currentTimeout);
+            }
+        }
+
+        function setNormal() {
+            clearStates();
+            button.innerHTML = '<span class="invest-button-text">Invest in your future</span>';
+        }
+
+        function setLoading() {
+            clearStates();
+            button.className = 'invest-button loading';
+            button.innerHTML = '<span class="invest-button-text">Loading</span>';
+
+            // Auto-return to normal after 3 seconds
+            currentTimeout = setTimeout(() => {
+                setNormal();
+            }, 3000);
+        }
+
+        function setError() {
+            clearStates();
+            button.className = 'invest-button error';
+            button.innerHTML = '<span class="invest-button-text">Error occurred!</span>';
+
+            // Auto-return to normal after 2 seconds
+            currentTimeout = setTimeout(() => {
+                setNormal();
+            }, 2000);
+        }
+
+        function setOutline() {
+            clearStates();
+            button.className = 'invest-button outline';
+            button.innerHTML = '<span class="invest-button-text">Invest in your future</span>';
+        }
+
+        function setBounce() {
+            clearStates();
+            button.className = 'invest-button bounce';
+            button.innerHTML = '<span class="invest-button-text">Invest in your future</span>';
+        }
+
+        function testFocus() {
+            setNormal();
+            button.focus();
+        }
+
+        // Default click handler
+        button.addEventListener('click', function () {
+            if (!this.classList.contains('loading') && !this.classList.contains('error')) {
+                console.log('Button clicked!');
+                // You can add your click logic here
+            }
+        });
+    </script>
+</body>
+
+</html>
