@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CalendarController extends Controller
 {
@@ -94,7 +95,7 @@ class CalendarController extends Controller
         $client = $user->client;
         
         if (!$client) {
-            $bookings = collect();
+            $bookings = new LengthAwarePaginator([], 0, 10);
         } else {
             $bookings = $client->bookings()->orderBy('date', 'desc')->paginate(10);
         }
